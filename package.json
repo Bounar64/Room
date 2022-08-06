@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "events": "^3.3.0",
     "three": "^0.143.0",
     "vite": "^3.0.0"
   }
