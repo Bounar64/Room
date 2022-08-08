@@ -6,6 +6,7 @@ import Time from './Utils/Time.js';
 import World from './World/World.js';
 import Resources from './Utils/Resources.js';
 import assets from './Utils/assets.js';
+import Debug from './Utils/Debug.js';
 
 export default class Experience {
     static instance
@@ -17,6 +18,7 @@ export default class Experience {
 
         Experience.instance = this;
         this.canvas = canvas;
+        this.debug = new Debug();
         this.scene = new THREE.Scene();
         this.time = new Time();
         this.sizes = new Sizes();

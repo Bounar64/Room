@@ -9,5 +9,5 @@ export default [
         name: "screen_desktop",
         type: "videoTexture",
         path: "/textures/red_video.mp4"
-    }
+    },
 ]
