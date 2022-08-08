@@ -46,7 +46,7 @@ export default class Room {
         })
 
         this.scene.add(this.actualRoom);
-        this.actualRoom.scale.set(0.5, 0.5, 0.5);
+        this.actualRoom.scale.set(0.3, 0.3, 0.3);
     }
 
     resize() {}
