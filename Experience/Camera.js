@@ -9,6 +9,8 @@ export default class Camera {
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
 
+        this.debug = this.experience.debug;
+
         this.createPerspectiveCamera();
         this.createOrthographicCamera();
         this.setOrbitControls();
@@ -22,7 +24,15 @@ export default class Camera {
             1000
         );
         this.scene.add(this.perspectiveCamera);
-        this.perspectiveCamera.position.set(30, 16, 14);
+        this.perspectiveCamera.position.set(5, 3, 5);
+
+        
+        if(this.debug.active) {
+            this.debugFolder = this.debug.ui.addFolder('camera');
+        }
+        if(this.debug.active) {
+            this.debugFolder.add(this.perspectiveCamera.position, 'y').min(-2).max(5).step(0.001);
+        }
     }
 
     createOrthographicCamera() {
@@ -34,27 +44,32 @@ export default class Camera {
             -10,
             10
         );
+
+        this.orthographicCamera.position.y = 4;
+        this.orthographicCamera.position.z = 5;
+        this.orthographicCamera.rotation.x = -Math.PI / 6;
+
         this.scene.add(this.orthographicCamera);
 
-        this.helper = new THREE.CameraHelper(this.orthographicCamera);
-        this.scene.add(this.helper);
+        // this.helper = new THREE.CameraHelper(this.orthographicCamera);
+        // this.scene.add(this.helper);
 
         // Grid Helpers
-        const size = 20;
-        const divisions = 20;
+        // const size = 20;
+        // const divisions = 20;
 
-        const gridHelper = new THREE.GridHelper(size, divisions);
-        this.scene.add(gridHelper);
+        // const gridHelper = new THREE.GridHelper(size, divisions);
+        // this.scene.add(gridHelper);
 
         // Axis Helpers
-        const axesHelper = new THREE.AxesHelper(10);
-        this.scene.add(axesHelper);
+        // const axesHelper = new THREE.AxesHelper(10);
+        // this.scene.add(axesHelper);
     }
 
     setOrbitControls() {
         this.controls = new OrbitControls(this.perspectiveCamera, this.canvas);
         this.controls.enableDamping = true;
-        this.controls.enableZoom = false;
+        this.controls.enableZoom = true;
     }
 
     resize() {
@@ -74,9 +89,9 @@ export default class Camera {
         this.controls.update();
         //console.log(this.perspectiveCamera.position);
 
-        this.helper.matrixWorldNeedsUpdate = true;
-        this.helper.update();
-        this.helper.position.copy(this.orthographicCamera.position);
-        this.helper.position.copy(this.orthographicCamera.rotation);
+        // this.helper.matrixWorldNeedsUpdate = true;
+        // this.helper.update();
+        // this.helper.position.copy(this.orthographicCamera.position);
+        // this.helper.position.copy(this.orthographicCamera.rotation);
     }
 }
