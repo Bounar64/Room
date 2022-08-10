@@ -44,8 +44,8 @@ export default class Room {
         })
 
         this.scene.add(this.actualRoom);
-        this.actualRoom.scale.set(0.3, 0.3, 0.3);
-        this.actualRoom.position.y = -0.5;
+        this.actualRoom.scale.set(0.25, 0.25, 0.25);
+        this.actualRoom.position.y = -0.7;
     }
 
     /**
