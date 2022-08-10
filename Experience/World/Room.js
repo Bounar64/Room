@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import Experience from '../Experience.js';
-import GSAP from 'gsap';
+import gsap from 'gsap';
 
 export default class Room {
     constructor() {
@@ -61,7 +61,7 @@ export default class Room {
 
     update() {
 
-        this.lerp.current = GSAP.utils.interpolate(
+        this.lerp.current = gsap.utils.interpolate(
             this.lerp.current,
             this.lerp.target,
             this.lerp.ease
