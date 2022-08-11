@@ -8,14 +8,48 @@
 
 html, body {
   font-family: "Montserrat", sans-serif;
-  color: var(--text-white);
+}
+
+h1,
+section,
+p,
+span,
+svg {
+  transition: all 0.5s;
 }
 
 :root {
-  --text-black: #333333;
-  --text-white: #fafafa;
-  --primary-color: #141414;
-  --primary-brown: #b9863f;
+  /* Light Theme Variables */
+  --color-text-light: #333333;
+  --color-background-light: #dbdcdf;
+  --color-brown-light: #b9863f;
+  --color-green-light: #7ad0ac;
+  --color-blue-light: #8395cd;
+  --color-button-theme-light: #E7E8EA;
+
+  /* Dark Theme Variables */
+  --color-text-dark: #fafafa;
+  /* --color-background-dark: #8395cd; */
+  --color-background-dark: #997dd6;
+  --color-button-theme-dark: #997dd6;
+}
+
+.light-theme {
+--color-text: var(--color-text-light);
+--color-background: var(--color-background-light);
+--color-brown: var(--color-brown-light);
+--color-green: var(--color-green-light);
+--color-blue: var(--color-blue-light);
+--color-button: var(--color-button-theme-light);
+}
+
+.dark-theme {
+  --color-text: var(--color-text-dark);
+  --color-background: var(--color-background-dark);
+  --color-brown: var(--color-text-dark);
+  --color-green: var(--color-text-dark);
+  --color-blue: var(--color-text-dark);
+  --color-button: var(--color-button-theme-dark);
 }
 
 /* Experience ------------------------------------------------ */
@@ -42,6 +76,61 @@ html, body {
   position: relative;
 }
 
+/* Toggle Bar ------------------------------------------------- */
+.toggle-bar {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 48px;
+  right: 48px;
+  z-index: 9999999;
+}
+
+.sun-wrapper,
+.moon-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text);
+}
+
+.toggle-button {
+  cursor: pointer;
+  position: relative;
+  width: 65px;
+  height: 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-brown);
+  border-radius:  999px;
+  margin: 0 16px;
+  border: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.toggle-circle {
+  position: absolute;
+  left: 6px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-background);
+  transition: all 0.1s ease-in-out;
+}
+
+.toggle-button:hover .toggle-circle {
+  transform: scale(0.9);
+}
+
+.slide {
+  left: calc(50% + 6px);
+}
+
 /* Section Formatting ----------------------------------------- */
 .section-margin {
   height: 3000px;
@@ -52,7 +141,7 @@ html, body {
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
-  background-color: var(--primary-color);
+  background-color: var(--color-background);
 }
 
 .left {
@@ -66,7 +155,7 @@ html, body {
 .section-intro-wrapper {
   position: relative;
   padding: 20% 5%;
-  border-bottom: 2px solid var(--primary-brown);
+  border-bottom: 2px solid var(--color-brown);
   padding-bottom: 400px;
 }
 
@@ -80,18 +169,20 @@ html, body {
   font-weight: 700;
   line-height: 1.8;
   margin-top: 64px;
+  color: var(--color-text);
 }
 
 .section-text {
   line-height: 2;
   margin-top: 18px;
   font-size: 16px;
+  color: var(--color-text);
 }
 
 /* Fancy decoration part of section */
 .section-title {
   position: relative;
-  color:var(--primary-brown);
+  color: var(--color-brown);
 }
 
 .section-title-text {
@@ -102,6 +193,7 @@ html, body {
   transform: skewY(25deg);
   z-index: 5;
   text-transform: uppercase;
+  color: var(--color-brown);
 }
 
 .styleOne,
@@ -112,7 +204,7 @@ html, body {
   width: 100%;
   max-width: 278px;
   height: 60px;
-  border: 1px solid var(--primary-brown);
+  border: 1px solid var(--color-brown);
   transform-origin: left;
 
   transform: skewY(-25deg);
@@ -129,14 +221,14 @@ html, body {
 .styleThree {
   top: 80px;
   transform: skewY(25deg);
-  background-color: var(--primary-brown);
+  background-color: var(--color-brown);
 }
 
 .section-number {
   position: absolute;
   bottom: 15px;
   right: 0;
-  color: var(--primary-brown);
+  color: var(--color-brown);
   font-size: 24px;
 }
 /* Hero section -----------------------------------------------*/
@@ -157,27 +249,29 @@ html, body {
   position: absolute;
   bottom: 168px;
   left: 0;
+  color: var(--color-text);
 }
 
 .hero-second {
   position: absolute;
   top: calc(50% - 120px);
   right: 0;
-  color: var(--text-black);
+  color: var(--color-text);
 }
 
 .hero-main-title {
   font-size: 64px;
   font-weight: 500;
-  color: var(--primary-brown);
+  color: var(--color-brown);
 }
 
 .hero-main-description {
   font-size: 18px;
-  color: var(--text-black);
+  color: var(--color-text);
 }
 
 .hero-second {
   font-size: 32px;
   text-transform: uppercase;
+  color: var(--color-text);
 }

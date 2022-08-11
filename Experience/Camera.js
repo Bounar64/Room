@@ -9,8 +9,6 @@ export default class Camera {
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
 
-        this.debug = this.experience.debug;
-
         this.createPerspectiveCamera();
         this.createOrthographicCamera();
         this.setOrbitControls();
@@ -25,14 +23,6 @@ export default class Camera {
         );
         this.scene.add(this.perspectiveCamera);
         this.perspectiveCamera.position.set(5, 3, 5);
-
-        
-        if(this.debug.active) {
-            this.debugFolder = this.debug.ui.addFolder('camera');
-        }
-        if(this.debug.active) {
-            this.debugFolder.add(this.perspectiveCamera.position, 'y').min(-2).max(5).step(0.001);
-        }
     }
 
     createOrthographicCamera() {
