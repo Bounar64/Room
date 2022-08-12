@@ -26,7 +26,25 @@ export default class Renderer {
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
+
+        this.button = document.querySelector('.toggle-button');
+        this.body = document.querySelector('body');
+
+        this.button.addEventListener('click', () => {
+            
+            if(this.body.className ==='dark-theme') {
+                console.log('light-theme activé')
+                this.renderer.setClearColor(0xE7E8EA, 1);
+
+            }else {
+                console.log('dark-theme activé')
+                this.renderer.setClearColor(0xDDDCEC, 1);
+            }
+        })
+        
     }
+
+    
 
     resize() {
         this.renderer.setSize(this.sizes.width, this.sizes.height);
