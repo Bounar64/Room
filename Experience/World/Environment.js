@@ -10,10 +10,10 @@ export default class Environment {
         this.resources = this.experience.resources;
 
         // this.gui = new GUI({ container: document.querySelector('.hero-main') });
-        this.obj = {
-            colorObj : {r: 0, g: 0, b: 0},
-            intensity: 3,
-        }
+        // this.obj = {
+        //     colorObj : {r: 0, g: 0, b: 0},
+        //     intensity: 3,
+        // }
 
         // this.setGUI();
         this.setSunLight();
@@ -33,6 +33,7 @@ export default class Environment {
     //         this.ambiantLight.intensity = this.obj.intensity;
     //     })
     // }
+
     
     /**
      * Light
@@ -68,11 +69,11 @@ export default class Environment {
         this.environmentMap.encoding = THREE.sRGBEncoding;
         this.environmentMapIntensity = 0.5;
         this.scene.environment = this.environmentMap;
+    
     }
 
     switchTheme(theme) {
         if(theme === 'dark') {
-            this.scene.environment.isTexture = false;
             gsap.to(this.sunLight.color, {
                 r: 66,
                 g: 41, 
@@ -90,8 +91,6 @@ export default class Environment {
                 intensity: 0.005,
             })
         }else {   
-            this.scene.environment.isTexture = true;
-          
             gsap.to(this.sunLight.color, {
                 r: 255 / 255,
                 g: 255 / 255, 
@@ -108,7 +107,6 @@ export default class Environment {
             gsap.to(this.ambiantLight, {
                 intensity: 0.5,
             })
-
         }
     }
 

@@ -275,3 +275,11 @@ svg {
   text-transform: uppercase;
   color: var(--color-text);
 }
+
+/* Media Queries */
+
+@media screen and (max-width: 968px) {
+  .section {
+    width: 100%;
+  }
+}
