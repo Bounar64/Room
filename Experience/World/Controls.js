@@ -19,6 +19,7 @@ export default class Controls {
         // this.gui = new GUI();
 
         this.setScrollTrigger();
+
     }
 
     setScrollTrigger() {
@@ -114,61 +115,25 @@ export default class Controls {
                     })
 
                 // Drawer animation (setAnimationDrawer) -----------------
-                this.room.children.forEach((child) => {
-                    if(child instanceof THREE.Group) { 
-                        if(child.name === 'drawer') {
-                            this.drawer = child
-                        }
-
-                        if(child.name === 'mail') {
-                            this.mail = child
-                        }
-                    }
-                })
-
-                this.AnimationTimeline = new gsap.timeline({
-                    scrollTrigger: {
+                this.mixer = new THREE.AnimationMixer(this.room);
+                ScrollTrigger.create({
                         trigger: '.third-move',
                         markers: true,
                         start: 'top-=100 top',
                         end: 'bottom bottom',
+                        onEnter: () => {
+                                this.drawerClip = this.mixer.clipAction(this.file.animations[0]);
+                                this.mailClip = this.mixer.clipAction(this.file.animations[1]);
+                                this.drawerClip.play();
+                                this.drawerClip.repetitions = 1;
+                                this.mailClip.play();
+                                this.mailClip.repetitions = 1;
+                                this.mailClip.clampWhenFinished = true;
+                                console.log(this.mailClip)
+                        },  
                         scrub: 0.5,
                         invalidateOnRefresh: true,
-                    }
-                }).to(this.drawer.position, {
-                    x: -0.71132,
-                    y: 1.01173, 
-                    }, "same")
-                .to(this.mail.position, {
-                    x: -1.77463,
-                    y: 1.34751,
-                }, "same")
-                .to(this.mail.position, {
-                    x: -1.57463,
-                    y: 2.2
-                }, "same2")
-                .to(this.drawer.position, {
-                    x: -1.6988292932510376, 
-                    y: 1.0117310285568237, 
-                    z: -0.8414605855941772
-                }, "same2")
-                .to(this.mail.rotation, {
-                    z: -1
-                }, "same2")
-                .to(this.mail.position, {
-                    x: -1.87463,
-                    y: 2.3,
-                }, "same3")
-                .to(this.mail.rotation, {
-                    z: 0.05
-                }, "same3")
-                .to(this.mail.position, {
-                    x: -2.3,
-                    y: 2.3,
-                }, "same4")
-                .to(this.mail.rotation, {
-                    y: 0.2,
-                }, "same4")
+                }) 
             },
 
             // Mobile
@@ -244,16 +209,10 @@ export default class Controls {
             }
         }); 
     }
-
-    setAnimation() {
-        this.mixer = new THREE.AnimationMixer(this.room);
-        this.clip = this.mixer.clipAction(this.file.animations[0]);
-        this.clip.play();
-    }
     
     resize() {}
 
     update() {
-        //this.mixer.update(this.time.delta * 0.0001);
+        this.mixer.update(this.time.delta * 0.001);
     }
 }

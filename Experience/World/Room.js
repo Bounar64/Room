@@ -9,7 +9,7 @@ export default class Room {
         this.resources = this.experience.resources;
         this.room = this.resources.items.room;
         this.actualRoom = this.room.scene;
-
+        
         this.lerp = {
             current : 0,
             target: 0,
