@@ -35,11 +35,11 @@ export default class Room {
                     groupchild.material.envMapIntensity = 0.8;
                 })
             }
-            // if(child.name === 'screen_desktop') {
-            //     child.material = new THREE.MeshBasicMaterial({
-            //         map: this.resources.items.screen_desktop
-            //     })
-            // }
+            if(child.name === 'screen_desktop') {
+                child.material = new THREE.MeshBasicMaterial({
+                    map: this.resources.items.screen_desktop          
+                })
+            }
         })
 
         this.scene.add(this.actualRoom);
