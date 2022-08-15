@@ -24,23 +24,19 @@ svg {
   --color-text-light: #333333;
   --color-background-light: #dbdcdf;
   --color-brown-light: #ce923f;
-  --color-green-light: #7ad0ac;
-  --color-blue-light: #8395cd;
   --color-button-theme-light: #E7E8EA;
 
   /* Dark Theme Variables */
   --color-text-dark: #fafafa;
   /* --color-background-dark: #8395cd; */
   --color-background-dark: #997dd6;
-  --color-button-theme-dark: #997dd6;
+  --color-button-theme-dark: #DDDCEC;
 }
 
 .light-theme {
 --color-text: var(--color-text-light);
 --color-background: var(--color-background-light);
 --color-brown: var(--color-brown-light);
---color-green: var(--color-green-light);
---color-blue: var(--color-blue-light);
 --color-button: var(--color-button-theme-light);
 }
 
@@ -48,8 +44,6 @@ svg {
   --color-text: var(--color-text-dark);
   --color-background: var(--color-background-dark);
   --color-brown: var(--color-text-dark);
-  --color-green: var(--color-text-dark);
-  --color-blue: var(--color-text-dark);
   --color-button: var(--color-button-theme-dark);
 }
 
@@ -139,18 +133,49 @@ svg {
 }
 
 .section {
+  position: relative;
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
   background-color: var(--color-background);
+  overflow: hidden;
 }
 
 .left {
   margin-right: auto;
+  border-top-right-radius: 700px 700px;
 }
 
 .right {
   margin-left: auto;
+  border-top-left-radius: 700px 700px;
+}
+
+/* Progress bar */
+.progress-wrapper {
+  height: 0px;
+  width: 10px;
+  z-index: 9999;
+}
+
+.progress-bar-wrapper-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-bar-wrapper-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.progress-bar {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--color-brown);
+  transform-origin: top center;
+  transform: scaleY(1);
 }
 
 .section-intro-wrapper {
@@ -283,4 +308,11 @@ svg {
   .section {
     width: 100%;
   }
+
+  /* Progress bar */
+  .progress-bar-wrapper-left {
+    right: 0px;
+    left: auto;
+  }
+
 }

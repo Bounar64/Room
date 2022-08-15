@@ -3,6 +3,7 @@ import Experience from "../Experience.js";
 import gsap from "gsap";
 import GUI from 'lil-gui';
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
+import ASScroll from '@ashthornton/asscroll';
 
 export default class Controls {
     constructor() {
@@ -18,8 +19,48 @@ export default class Controls {
 
         // this.gui = new GUI();
 
+        this.setSmoothScroll();
         this.setScrollTrigger();
 
+    }
+
+    setupASScroll() {
+        // https://github.com/ashthornton/asscroll
+        const asscroll = new ASScroll({
+          disableRaf: true,
+          ease: 0.3
+        });
+    
+        gsap.ticker.add(asscroll.update);
+      
+        ScrollTrigger.defaults({
+          scroller: asscroll.containerElement 
+        });
+      
+        ScrollTrigger.scrollerProxy(asscroll.containerElement, {
+          scrollTop(value) {
+            if (arguments.length) {
+              asscroll.currentPos = value;
+              return;
+            }
+            return asscroll.currentPos;
+          },
+          getBoundingClientRect() {
+            return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+          },
+          fixedMarkers: true });
+      
+        asscroll.on("update", ScrollTrigger.update);
+        ScrollTrigger.addEventListener("refresh", asscroll.resize);
+      
+        requestAnimationFrame(() => {
+          asscroll.enable({
+            newScrollElements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") });
+        })
+    }
+
+    setSmoothScroll() {
+        this.asscroll = this.setupASScroll();
     }
 
     setScrollTrigger() {
@@ -128,11 +169,71 @@ export default class Controls {
                                 this.mailClip.play();
                                 this.mailClip.repetitions = 1;
                                 this.mailClip.clampWhenFinished = true;
-                                console.log(this.mailClip)
                         },  
                         scrub: 0.5,
                         invalidateOnRefresh: true,
                 }) 
+            },
+
+            // all
+            all: () => {
+                this.sections = document.querySelectorAll(".section");
+                this.sections.forEach((section) => {
+                    this.progressWrapper = section.querySelector(".progress-wrapper");
+                    this.progressBar = section.querySelector(".progress-bar");
+
+                    if(section.classList.contains("right")) {
+                        gsap.to(section, {
+                            borderTopLeftRadius: 10,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top bottom",
+                                end: "top top",
+                                scrub: 0.5,
+                            }
+                        })
+                        gsap.to(section, {
+                            borderBottomLeftRadius: 700,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "bottom bottom",
+                                end: "bottom top",
+                                scrub: 0.5,
+                            }
+                        })
+                    }else {
+                        gsap.to(section, {
+                            borderTopRightRadius: 10,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top bottom",
+                                end: "top top",
+                                scrub: 0.5,
+                            }
+                        })
+                        gsap.to(section, {
+                            borderBottomRightRadius: 700,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "bottom bottom",
+                                end: "bottom top",
+                                scrub: 0.5,
+                            }
+                        })
+                    }
+
+                    gsap.from(this.progressBar, {
+                        scaleY: 0,
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top top",
+                            end: "bottom bottom",
+                            scrub: 0.4,
+                            pin: this.progressBar,
+                            pinSpacing: false
+                        }
+                    });
+                })
             },
 
             // Mobile
@@ -221,7 +322,6 @@ export default class Controls {
                                 this.mailClip.play();
                                 this.mailClip.repetitions = 1;
                                 this.mailClip.clampWhenFinished = true;
-                                console.log(this.mailClip)
                         },  
                         scrub: 0.5,
                         invalidateOnRefresh: true,

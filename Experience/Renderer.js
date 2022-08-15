@@ -34,11 +34,11 @@ export default class Renderer {
         this.button.addEventListener('click', () => {
             
             if(this.body.className ==='dark-theme') {
-                console.log('light-theme enable')
+                // console.log('light-theme enable')
                 this.renderer.setClearColor(0xE7E8EA, 1);
 
             }else {
-                console.log('dark-theme enable')
+                // console.log('dark-theme enable')
                 this.renderer.setClearColor(0xDDDCEC, 1);
             }
         })
