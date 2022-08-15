@@ -118,7 +118,6 @@ export default class Controls {
                 this.mixer = new THREE.AnimationMixer(this.room);
                 ScrollTrigger.create({
                         trigger: '.third-move',
-                        markers: true,
                         start: 'top-=100 top',
                         end: 'bottom bottom',
                         onEnter: () => {
@@ -206,6 +205,27 @@ export default class Controls {
                         z: -0.2,
                         x: 0.2,
                     }, "same")
+
+                // Drawer animation (setAnimationDrawer) -----------------
+                this.mixer = new THREE.AnimationMixer(this.room);
+                ScrollTrigger.create({
+                        trigger: '.third-move',
+                        start: 'top+=1300 top',
+                        end: 'bottom bottom',
+                        markers: true,
+                        onEnter: () => {
+                                this.drawerClip = this.mixer.clipAction(this.file.animations[0]);
+                                this.mailClip = this.mixer.clipAction(this.file.animations[1]);
+                                this.drawerClip.play();
+                                this.drawerClip.repetitions = 1;
+                                this.mailClip.play();
+                                this.mailClip.repetitions = 1;
+                                this.mailClip.clampWhenFinished = true;
+                                console.log(this.mailClip)
+                        },  
+                        scrub: 0.5,
+                        invalidateOnRefresh: true,
+                })
             }
         }); 
     }
