@@ -9,6 +9,7 @@ export default class Room {
         this.resources = this.experience.resources;
         this.room = this.resources.items.room;
         this.actualRoom = this.room.scene;
+        this.roomChildren = {};
         
         this.lerp = {
             current : 0,
@@ -40,11 +41,23 @@ export default class Room {
                     map: this.resources.items.screen_desktop          
                 })
             }
-        })
+
+            // if(child.name === 'Cube') {
+            //     child.scale.set(1, 1, 1);
+            // }
+
+            if(child.name === 'body' || child.name === 'Cube') {
+                child.scale.set(1, 1, 1);
+            }else {
+                child.scale.set(0, 0, 0)
+            }
+
+            this.roomChildren[child.name.toLowerCase()] = child;
+        });
 
         this.scene.add(this.actualRoom);
         this.actualRoom.scale.set(0.3, 0.3, 0.3);
-        this.actualRoom.position.y = -0.7;
+        this.actualRoom.position.y = -0.4;
     }
 
     /**

@@ -361,7 +361,6 @@ export default class Controls {
                         trigger: '.third-move',
                         start: 'top+=1300 top',
                         end: 'bottom bottom',
-                        markers: true,
                         onEnter: () => {
                                 this.drawerClip = this.mixer.clipAction(this.file.animations[0]);
                                 this.mailClip = this.mixer.clipAction(this.file.animations[1]);
@@ -373,7 +372,7 @@ export default class Controls {
                         },  
                         scrub: 0.5,
                         invalidateOnRefresh: true,
-                })
+                });
             }
         }); 
     }

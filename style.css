@@ -10,6 +10,9 @@ html, body {
   font-family: "Montserrat", sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
 
 h1,
 section,
@@ -308,6 +311,10 @@ svg {
 @media screen and (max-width: 968px) {
   .section {
     width: 100%;
+  }
+
+  .third-section {
+    height: 100%;
   }
 
   /* Progress bar */
