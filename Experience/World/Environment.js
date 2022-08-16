@@ -15,7 +15,6 @@ export default class Environment {
         //     intensity: 3,
         // }
 
-        // this.setGUI();
         this.setSunLight();
         this.environmentMap();
     }
@@ -44,11 +43,16 @@ export default class Environment {
         this.sunLight.shadow.camera.far = 10;
         this.sunLight.shadow.mapSize.set(2048, 2048);
         this.sunLight.shadow.normalBias = 0.05;
-        this.sunLight.position.set(0.5, 2.3, 5.7);
+        this.sunLight.position.set(0, 3, 3);
         this.scene.add(this.sunLight);
 
-        this.ambiantLight = new THREE.AmbientLight('#ffffff', 0.5);
+        this.ambiantLight = new THREE.AmbientLight('#ffffff', 1.5);
         this.scene.add(this.ambiantLight);
+        
+        // Helpers
+        // this.gui.add(this.sunLight.position, 'x', -10, 10, 0.0001).name('sun X');
+        // this.gui.add(this.sunLight.position, 'y', -10, 10, 0.0001).name('sun Y');
+        // this.gui.add(this.sunLight.position, 'z', -10, 10, 0.0001).name('sun Z');
     }
 
     /**
@@ -67,9 +71,7 @@ export default class Environment {
         ])
 
         this.environmentMap.encoding = THREE.sRGBEncoding;
-        this.environmentMapIntensity = 0.5;
         this.scene.environment = this.environmentMap;
-    
     }
 
     switchTheme(theme) {
@@ -105,7 +107,7 @@ export default class Environment {
                 intensity: 3,
             })
             gsap.to(this.ambiantLight, {
-                intensity: 0.5,
+                intensity: 1.5,
             })
         }
     }

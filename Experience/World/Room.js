@@ -32,7 +32,7 @@ export default class Room {
                 child.children.forEach((groupchild) => {
                     groupchild.castShadow = true;
                     groupchild.receiveShadow = true;
-                    groupchild.material.envMapIntensity = 0.8;
+                    groupchild.material.envMapIntensity = 1;
                 })
             }
             if(child.name === 'screen_desktop') {

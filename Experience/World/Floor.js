@@ -7,6 +7,8 @@ export default class Floor {
         this.scene = this.experience.scene;
 
         this.setFloor();
+        this.setCircle();
+
     }
 
     setFloor() {
@@ -22,8 +24,25 @@ export default class Floor {
         this.plane.receiveShadow = true;
     }
 
+    setCircle() {      
+        this.geometry = new THREE.CircleGeometry(20, 128);
+        this.material = new THREE.MeshStandardMaterial({ color: 0xdb1b02 });
+        this.circle = new THREE.Mesh(this.geometry, this.material);
+        
+        this.button = document.querySelector('.toggle-button');
+        this.body = document.querySelector('body');
+
+        this.circle.position.y = -0.89;
+        this.circle.scale.set(0, 0, 0);
+        this.circle.rotation.x = -Math.PI / 2;
+        this.circle.scale.receiveShadow = true;
+
+        this.scene.add(this.circle);
+    }
+
     resize() {}
 
-    update() {}
+    update() {
+}
         
 }

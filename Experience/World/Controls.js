@@ -15,6 +15,7 @@ export default class Controls {
         this.camera = this.experience.camera;
         this.room = this.experience.world.room.actualRoom;
         this.file = this.resources.items.room;
+        this.circle = this.experience.world.floor.circle;
         gsap.registerPlugin(ScrollTrigger);
 
         // this.gui = new GUI();
@@ -233,6 +234,53 @@ export default class Controls {
                             pinSpacing: false
                         }
                     });
+                });
+
+
+                // Circle animations ------------------
+                // First Section ----------------------------------------
+                this.firstMoveTimeline = new gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.first-move',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.5,
+                        invalidateOnRefresh: true,
+                    }
+                }).to(this.circle.scale, {
+                    x: 3,
+                    y: 3,
+                    z: 3
+                })
+
+                // Second Section ----------------------------------------
+                this.secondMoveTimeline = new gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.second-move',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.5,
+                        invalidateOnRefresh: true,
+                    }
+                }).to(this.circle.scale, {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                })
+
+                // Third Section ----------------------------------------
+                this.thirdMoveTimeline = new gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.third-move',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.5,
+                        invalidateOnRefresh: true,
+                    },
+                }).to(this.circle.scale, {
+                    x: 3,
+                    y: 3,
+                    z: 3
                 })
             },
 

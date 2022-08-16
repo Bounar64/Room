@@ -22,15 +22,16 @@ svg {
 :root {
   /* Light Theme Variables */
   --color-text-light: #333333;
-  --color-background-light: #dbdcdf;
-  --color-brown-light: #ce923f;
-  --color-button-theme-light: #E7E8EA;
+  --color-background-light: #F0F0F1;
+  --color-brown-light: #e4a950;
+  /* --color-brown-light: #db1b02; */
+  --color-button-theme-light: #F0F0F1;
 
   /* Dark Theme Variables */
   --color-text-dark: #fafafa;
   /* --color-background-dark: #8395cd; */
   --color-background-dark: #997dd6;
-  --color-button-theme-dark: #DDDCEC;
+  --color-button-theme-dark: #F0F0F1;
 }
 
 .light-theme {

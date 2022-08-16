@@ -5,7 +5,6 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
 import Experience from '../Experience.js';
 
-
 export default class Resources extends EventEmitter {
     constructor(assets) {
         super();
@@ -36,7 +35,7 @@ export default class Resources extends EventEmitter {
             if(asset.type === "glbModel") {
                 this.loaders.gltfLoader.load(asset.path, (file) => {
                     this.singleAssetLoaded(asset, file);
-                })
+            })
             }else if(asset.type === "videoTexture") {
                 this.video = {};
                 this.videoTexture = {};

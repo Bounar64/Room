@@ -35,8 +35,7 @@ export default class Renderer {
             
             if(this.body.className ==='dark-theme') {
                 // console.log('light-theme enable')
-                this.renderer.setClearColor(0xE7E8EA, 1);
-
+                this.renderer.setClearColor(0xF0F0F1, 1);
             }else {
                 // console.log('dark-theme enable')
                 this.renderer.setClearColor(0xDDDCEC, 1);
