@@ -12,7 +12,7 @@ html, body {
 
 body {
   overflow: hidden;
-}
+} 
 
 h1,
 section,
@@ -68,11 +68,27 @@ svg {
   z-index: 99999;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .page-wrapper {
   position: relative;
+}
+
+/* Preloader Stuff -------------------------------------------- */
+
+.animated {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+.intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 500;
+  font-size: 16px;
+  transform: translate(-50%, -50%);
 }
 
 /* Toggle Bar ------------------------------------------------- */

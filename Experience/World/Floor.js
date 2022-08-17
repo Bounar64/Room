@@ -26,7 +26,8 @@ export default class Floor {
 
     setCircle() {      
         this.geometry = new THREE.CircleGeometry(20, 128);
-        this.material = new THREE.MeshStandardMaterial({ color: 0xdb1b02 });
+        // this.material = new THREE.MeshStandardMaterial({ color: 0xdb1b02 });
+        this.material = new THREE.MeshStandardMaterial({ color: 0x555555 });
         this.circle = new THREE.Mesh(this.geometry, this.material);
         
         this.button = document.querySelector('.toggle-button');

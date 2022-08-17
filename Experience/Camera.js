@@ -10,7 +10,6 @@ export default class Camera {
         this.canvas = this.experience.canvas;
 
         this.createPerspectiveCamera();
-        this.createOrthographicCamera();
         this.setOrbitControls();
     }
 
@@ -23,34 +22,17 @@ export default class Camera {
         );
         this.scene.add(this.perspectiveCamera);
         this.perspectiveCamera.position.set(5, 3, 5);
-    }
-
-    createOrthographicCamera() {
-        this.orthographicCamera = new THREE.OrthographicCamera(
-            (-this.sizes.aspect * this.sizes.frustrum) / 2,
-            (this.sizes.aspect * this.sizes.frustrum) / 2,
-            this.sizes.frustrum / 2,
-            -this.sizes.frustrum / 2,
-            -10,
-            10
-        );
-
-        this.orthographicCamera.position.y = 4;
-        this.orthographicCamera.position.z = 5;
-        this.orthographicCamera.rotation.x = -Math.PI / 6;
-
-        this.scene.add(this.orthographicCamera);
 
         // this.helper = new THREE.CameraHelper(this.orthographicCamera);
         // this.scene.add(this.helper);
-
+    
         // Grid Helpers
         // const size = 20;
         // const divisions = 20;
-
+    
         // const gridHelper = new THREE.GridHelper(size, divisions);
         // this.scene.add(gridHelper);
-
+    
         // Axis Helpers
         // const axesHelper = new THREE.AxesHelper(10);
         // this.scene.add(axesHelper);
@@ -68,11 +50,11 @@ export default class Camera {
         this.perspectiveCamera.updateProjectionMatrix();
 
         // Update Orthographic Camera on Resize
-        this.orthographicCamera.left = (-this.sizes.aspect * this.sizes.frustrum) / 2;
-        this.orthographicCamera.right = (this.sizes.aspect * this.sizes.frustrum) / 2;
-        this.orthographicCamera.top = this.sizes.frustrum / 2;
-        this.orthographicCamera.bottom = -this.sizes.frustrum / 2;
-        this.orthographicCamera.updateProjectionMatrix();
+        // this.orthographicCamera.left = (-this.sizes.aspect * this.sizes.frustrum) / 2;
+        // this.orthographicCamera.right = (this.sizes.aspect * this.sizes.frustrum) / 2;
+        // this.orthographicCamera.top = this.sizes.frustrum / 2;
+        // this.orthographicCamera.bottom = -this.sizes.frustrum / 2;
+        // this.orthographicCamera.updateProjectionMatrix();
     }
 
     update() {

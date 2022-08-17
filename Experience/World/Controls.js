@@ -20,6 +20,8 @@ export default class Controls {
 
         // this.gui = new GUI();
 
+        document.querySelector('body').style.overflow = 'visible';
+
         this.setSmoothScroll();
         this.setScrollTrigger();
 
