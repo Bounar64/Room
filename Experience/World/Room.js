@@ -46,11 +46,13 @@ export default class Room {
             //     child.scale.set(1, 1, 1);
             // }
 
-            if(child.name === 'body' || child.name === 'Cube') {
-                child.scale.set(1, 1, 1);
-            }else {
-                child.scale.set(0, 0, 0)
-            }
+            // if(child.name === 'body' || child.name === 'Cube') {
+            //     child.scale.set(0, 0, 0);
+            // }else {
+            //     child.scale.set(0, 0, 0)
+            // }
+
+            child.scale.set(0, 0, 0)
 
             this.roomChildren[child.name.toLowerCase()] = child;
         });
