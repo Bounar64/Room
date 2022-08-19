@@ -48,13 +48,22 @@ export default class Preloader extends EventEmitter {
             });
 
             if(this.device === 'desktop') {
+                // floor position for close shadow
+                this.timeline.to(this.world.floor.plane.position, {
+                    y: -0.3
+                })
                 this.timeline.to(this.roomChildren.cube.scale, {
                     x: 0.2,
                     y: 0.22,
                     z: 0.2,
                     ease: 'back.out(2.5)',
                     duration: 0.7
-                })
+                }, 'cube')
+                this.timeline.to(this.roomChildren.cube.position, {
+                    y: 1.5,
+                    ease: 'back.out(2.5)',
+                    duration: 0.7
+                }, 'cube')
                 .to(this.room.position, {
                     x: -1,
                     z: 1,
@@ -73,20 +82,33 @@ export default class Preloader extends EventEmitter {
                     onComplete: resolve
                 }, 'same')      
             }else {
+                // floor position for close shadow
+                this.timeline.to(this.world.floor.plane.position, {
+                    y: -0.3
+                })
                 this.timeline.to(this.roomChildren.cube.scale, {
                     x: 0.2,
                     y: 0.22,
                     z: 0.2,
                     ease: 'back.out(2.5)',
                     duration: 0.7
-                })
+                }, 'cube')
+                this.timeline.to(this.roomChildren.cube.position, {
+                    y: 1.5,
+                    ease: 'back.out(2.5)',
+                    duration: 0.7
+                }, 'cube')
                 .to(this.room.position, {
                     x: -0.3,
                     y: 0.3,
                     z: -0.3,
                     ease: 'power1.out',
                     duration: 0.7,
-                })
+                }, 'floor')
+                .to(this.world.floor.plane.position, {
+                    y: 0.4,
+                    duration: 0.7,
+                }, 'floor')
             }
             this.timeline.to('.intro-text .animated', {
                 yPercent: -100,
@@ -116,166 +138,176 @@ export default class Preloader extends EventEmitter {
                 opacity: 0
             }, 'fadeout')  
 
-            if(this.device === 'mobile') {
-                this.timeline.to(this.room.scale, {
-                    x: 0.15,
-                    y: 0.15,
-                    z: 0.15,
-                    ease: 'back.out(2.5)',
+                this.secondTimeline.to(this.roomChildren.body.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'power1.out',
+                    delay: 0.5
+                }, 'same')
+                this.secondTimeline.to(this.roomChildren.cube.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'power1.out'
+                }, 'same')
+                .to(this.world.floor.plane.position, {
+                    y: -1
+                }, 'same')
+                .to(this.roomChildren.cube.position, {
+                    y: 3.5,
+                    ease: 'power1.out'
+                }, 'same')
+                this.secondTimeline.to(this.room.position, {
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    ease: 'power1.out'
+                }, 'same')
+                .to(this.room.rotation, {
+                    y: 2 * Math.PI,
                     duration: 0.7
-                });  
-            }
-
-            this.secondTimeline.to(this.room.position, {
-                x: 0,
-                y: 0,
-                z: 0,
-                ease: 'power1.out'
-            }, 'same')
-            .to(this.room.rotation, {
-                y: 2 * Math.PI,
-                duration: 0.7
-            }, 'same')
-            .to(this.room.scale, {
-                x: 0.3,
-                y: 0.3,
-                z: 0.3
-            }, 'same')
-            .to(this.room.position, {
-                y: -0.7,
-            }, 'same')
-            .to(this.roomChildren.cube.scale, {
-                x: 0,
-                y: 0,
-                z: 0,
-                ease: 'power1.in'
-            }, 'intro')
-            .to('.hero-main-title .animated', {
-                yPercent: -100,
-                stagger: 0.07,
-                ease: 'back.out(1.7)',
-            }, 'intro')
-            .to('.hero-main-description .animated', {
-                yPercent: -100,
-                stagger: 0.07,
-                ease: 'back.out(1.7)',
-            }, 'intro')
-            .to('.first-sub .animated', {
-                yPercent: -100,
-                stagger: 0.07,
-                ease: 'back.out(1.7)',
-            }, 'intro')
-            .to('.second-sub .animated', {
-                yPercent: -100,
-                stagger: 0.07,
-                ease: 'back.out(1.7)',
-            }, 'intro')
-            .to(this.roomChildren.desk.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1.5)',
-                duration: 0.5
-            }, ">-0.5")
-            .to(this.roomChildren.drawer.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1.5)',
-                duration: 0.5
-            }, ">-0.5")
-            .to(this.roomChildren.mail.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1.5)',
-                duration: 0.5
-            }, ">-0.5")
-            .to(this.roomChildren.tv.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(2.2)',
-                duration: 0.5
-            }, '>-0.4')
-            .to(this.roomChildren.screen_tv.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(2.2)',
-                duration: 0.5
-            }, '>-0.4')
-            .to(this.roomChildren.computer.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1)',
-                duration: 0.5
-            }, '>-0.3')
-            .to(this.roomChildren.screen_desktop.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1)',
-                duration: 0.5
-            }, '>-0.3')
-            .to(this.roomChildren.desk_stuff_3.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1)',
-                duration: 0.5
-            }, ">-0.2")
-            .to(this.roomChildren.screen_photo.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1)',
-                duration: 0.5
-            }, ">-0.3")
-            .to(this.roomChildren.desk_stuff_1.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1)',
-                duration: 0.5
-            })
-            .to(this.roomChildren.desk_stuff_2.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(1)',
-                duration: 0.5
-            }, '>-0.1')
-            .to(this.roomChildren.ben.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(2.2)',
-                duration: 0.5
-            }, '>0.1')
-            .to(this.roomChildren.foot_chair.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(2.2)',
-                duration: 0.3,
-            })
-            .to(this.roomChildren.chair.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
-                ease: 'back.out(2.2)',
-                duration: 0.5,
-            }, 'chair').to(this.roomChildren.chair.rotation, {
-                y: 4 * Math.PI + Math.PI / 2.5,
-                ease: 'back.out(2.2)',
-                duration: 2
-            }, 'chair')
-            .to('.arrow-svg-wrapper', {
-                opacity: 1,
-                onComplete: resolve
-            })  
+                }, 'same')
+                .to(this.room.scale, {
+                    x: 0.3,
+                    y: 0.3,
+                    z: 0.3
+                }, 'same')
+                .to(this.room.position, {
+                    y: -0.7,
+                }, 'same')
+                .to(this.roomChildren.cube.scale, {
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    ease: 'power1.in'
+                }, 'intro')
+                .to('.hero-main-title .animated', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.7)',
+                }, 'intro')
+                .to('.hero-main-description .animated', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.7)',
+                }, 'intro')
+                .to('.first-sub .animated', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.7)',
+                }, 'intro')
+                .to('.second-sub .animated', {
+                    yPercent: -100,
+                    stagger: 0.07,
+                    ease: 'back.out(1.7)',
+                }, 'intro')
+                .to(this.roomChildren.desk.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1.5)',
+                    duration: 0.5
+                }, ">-0.5")
+                .to(this.roomChildren.drawer.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1.5)',
+                    duration: 0.5
+                }, ">-0.5")
+                .to(this.roomChildren.mail.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1.5)',
+                    duration: 0.5
+                }, ">-0.5")
+                .to(this.roomChildren.tv.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(2.2)',
+                    duration: 0.5
+                }, '>-0.4')
+                .to(this.roomChildren.screen_tv.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(2.2)',
+                    duration: 0.5
+                }, '>-0.4')
+                .to(this.roomChildren.computer.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.5
+                }, '>-0.3')
+                .to(this.roomChildren.screen_desktop.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.5
+                }, '>-0.3')
+                .to(this.roomChildren.desk_stuff_3.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.5
+                }, ">-0.2")
+                .to(this.roomChildren.screen_photo.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.5
+                }, ">-0.3")
+                .to(this.roomChildren.desk_stuff_1.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.5
+                })
+                .to(this.roomChildren.desk_stuff_2.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.5
+                }, '>-0.1')
+                .to(this.roomChildren.ben.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(2.2)',
+                    duration: 0.5
+                }, '>0.1')
+                .to(this.roomChildren.foot_chair.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(2.2)',
+                    duration: 0.3,
+                })
+                .to(this.roomChildren.chair.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(2.2)',
+                    duration: 0.5,
+                }, 'chair').to(this.roomChildren.chair.rotation, {
+                    y: 4 * Math.PI + Math.PI / 2.5,
+                    ease: 'back.out(2.2)',
+                    duration: 2
+                }, 'chair')
+                .to('.arrow-svg-wrapper', {
+                    opacity: 1,
+                    onComplete: resolve
+                })
         });
     }
 
@@ -352,5 +384,3 @@ export default class Preloader extends EventEmitter {
        }
     }
 }
-
-

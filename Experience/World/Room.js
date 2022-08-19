@@ -25,6 +25,7 @@ export default class Room {
      * Room
      */
     setModel() {
+
         this.actualRoom.children.forEach((child) => {
             child.castShadow = true;
             child.receiveShadow = true;
@@ -42,17 +43,11 @@ export default class Room {
                 })
             }
 
-            // if(child.name === 'Cube') {
-            //     child.scale.set(1, 1, 1);
-            // }
+            child.scale.set(0, 0, 0);
 
-            // if(child.name === 'body' || child.name === 'Cube') {
-            //     child.scale.set(0, 0, 0);
-            // }else {
-            //     child.scale.set(0, 0, 0)
-            // }
-
-            child.scale.set(0, 0, 0)
+            if(child.name === 'Cube') {
+                child.position.y = 1.5
+            }
 
             this.roomChildren[child.name.toLowerCase()] = child;
         });

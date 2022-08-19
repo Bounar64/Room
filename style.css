@@ -141,7 +141,7 @@ svg {
 
 .arrow-svg-wrapper {
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   left: 50%;
   opacity: 0;
   transform: translate(-50%, -50%);
@@ -160,7 +160,7 @@ svg {
 
 .intro-text {
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   font-weight: 500;
   font-size: 18px;
@@ -174,8 +174,8 @@ svg {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  top: 48px;
-  right: 48px;
+  top: 50px;
+  right: 50px;
   opacity: 0;
   z-index: 9999999;
 }
@@ -365,12 +365,12 @@ svg {
   height: 100%;
   width: calc(100% - 160px);
   margin: 0 auto;
-  max-width: 1100px;
+  max-width: 1200px;
 }
 
 .hero-main {
   position: absolute;
-  bottom: 168px;
+  bottom: 170px;
   left: 0;
   color: var(--color-text);
 }

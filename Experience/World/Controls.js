@@ -16,6 +16,7 @@ export default class Controls {
         this.room = this.experience.world.room.actualRoom;
         this.file = this.resources.items.room;
         this.circle = this.experience.world.floor.circle;
+        this.floor = this.experience.world.floor.plane;
         gsap.registerPlugin(ScrollTrigger);
 
         // this.gui = new GUI();
@@ -142,7 +143,11 @@ export default class Controls {
                         x: 0.6,
                         y: 0.6,
                         z: 0.6,
-                    }, "same");
+                    }, "same")
+
+                    .to(this.floor.position, {
+                        y: -1.5,
+                    }, "same")
 
                 // Third Section ----------------------------------------
                 this.thirdMoveTimeline = new gsap.timeline({
@@ -269,7 +274,7 @@ export default class Controls {
                     y: 0,
                     z: 0
                 })
-
+        
                 // Third Section ----------------------------------------
                 this.thirdMoveTimeline = new gsap.timeline({
                     scrollTrigger: {
@@ -307,8 +312,8 @@ export default class Controls {
                         x: 0.5,
                         y: 0.5,
                         z: 0.5
-                    })
-                    
+                    }, 'same')
+                
                 // Second Section ----------------------------------------
                 this.secondMoveTimeline = new gsap.timeline({
                     scrollTrigger: {

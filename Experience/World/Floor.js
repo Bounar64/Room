@@ -20,7 +20,7 @@ export default class Floor {
         this.plane = new THREE.Mesh(this.geometry, this.material);
         this.scene.add(this.plane);
         this.plane.rotation.x = Math.PI / 2;
-        this.plane.position.y = -0.9;
+        this.plane.position.y = -1;
         this.plane.receiveShadow = true;
     }
 
@@ -33,7 +33,7 @@ export default class Floor {
         this.button = document.querySelector('.toggle-button');
         this.body = document.querySelector('body');
 
-        this.circle.position.y = -0.89;
+        this.circle.position.y = -0.9;
         this.circle.scale.set(0, 0, 0);
         this.circle.rotation.x = -Math.PI / 2;
         this.circle.scale.receiveShadow = true;
