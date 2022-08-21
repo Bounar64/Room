@@ -141,6 +141,7 @@ svg {
 
 .arrow-svg-wrapper {
   position: absolute;
+  color: var(--color-text);
   bottom: 5%;
   left: 50%;
   opacity: 0;
@@ -159,7 +160,11 @@ svg {
 }
 
 .intro-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  color: var(--color-text);
   top: 50%;
   left: 50%;
   font-weight: 500;
@@ -415,16 +420,42 @@ svg {
     right: 0px;
     left: auto;
   }
-}
-/* 
-@media screen and (max-width: 425px) {
-  .intro-text {
-    position: absolute;
-    width: 100%;
-    top: 80%;
-    left: 50%;
-    font-weight: 500;
-    font-size: 12px;
-    transform: translate(-50%, -50%);
+
+  .hero-main {
+    bottom: 120px;
   }
+
+  .hero-second {
+    top: 180px;
+  }
+
+  .hero-wrapper {
+    width: calc(100% - 50px);
+  }
+
+  .hero-main-title {
+    font-size: 32px;
+  }
+
+  .hero-main-description {
+    font-size: 18px;
+  }
+
+  .hero-second-subheading {
+    font-size: 18px;
+  }
+
+  .toggle-button {
+    margin: 0 5px;
+    height: 25px;
+  }
+  .toggle-bar {
+    top: 20px;
+    right: 20px;
+
+  } 
+}
+
+/* @media screen and (max-width: 425px) {
+ 
 } */

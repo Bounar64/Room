@@ -49,6 +49,13 @@ export default class Room {
                 child.position.y = 1.5
             }
 
+            if(child.name === 'screen_photo') {
+                this.texture = new THREE.TextureLoader().load('textures/paris.jpg');
+                child.material = new THREE.MeshBasicMaterial({
+                    map:  this.texture
+                });
+            }
+
             this.roomChildren[child.name.toLowerCase()] = child;
         });
 

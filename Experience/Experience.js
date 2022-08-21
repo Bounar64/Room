@@ -34,7 +34,6 @@ export default class Experience {
             this.controls = new Controls();
         });
 
-
         this.time.on("update", () => {
             this.update();
         });

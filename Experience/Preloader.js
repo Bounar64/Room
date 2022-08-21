@@ -39,13 +39,14 @@ export default class Preloader extends EventEmitter {
         return new Promise ((resolve) => {
             this.timeline = new gsap.timeline();
 
+            this.timeline.set('.animated', {y: 0, yPercent: 100});
+
             this.timeline.to('.loader', {
                 opacity: 0,
-                delay: 1,
                 onComplete: () => {
                     document.querySelector('.loader').classList.add('hidden');
                 }
-            });
+            })
 
             if(this.device === 'desktop') {
                 // floor position for close shadow
@@ -71,7 +72,7 @@ export default class Preloader extends EventEmitter {
                     duration: 0.7,
                 }) 
                 .to('.intro-text .animated', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07
                 })
                 .to('.arrow-svg-wrapper', {
@@ -111,7 +112,7 @@ export default class Preloader extends EventEmitter {
                 }, 'floor')
             }
             this.timeline.to('.intro-text .animated', {
-                yPercent: -100,
+                yPercent: 0,
                 stagger: 0.07,
                 ease: 'back.out(1.7)'
             })
@@ -183,22 +184,22 @@ export default class Preloader extends EventEmitter {
                     ease: 'power1.in'
                 }, 'intro')
                 .to('.hero-main-title .animated', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.7)',
                 }, 'intro')
                 .to('.hero-main-description .animated', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.7)',
                 }, 'intro')
                 .to('.first-sub .animated', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.7)',
                 }, 'intro')
                 .to('.second-sub .animated', {
-                    yPercent: -100,
+                    yPercent: 0,
                     stagger: 0.07,
                     ease: 'back.out(1.7)',
                 }, 'intro')
@@ -264,14 +265,28 @@ export default class Preloader extends EventEmitter {
                     z: 1,
                     ease: 'back.out(1)',
                     duration: 0.5
-                }, ">-0.3")
+                }, ">-0.2")
                 .to(this.roomChildren.desk_stuff_1.scale, {
                     x: 1,
                     y: 1,
                     z: 1,
                     ease: 'back.out(1)',
                     duration: 0.5
-                })
+                }, ">-0.1")
+                .to(this.roomChildren.led_light.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.5
+                }, ">-0.3")
+                .to(this.roomChildren.led.scale, {
+                    x: 1,
+                    y: 1,
+                    z: 1,
+                    ease: 'back.out(1)',
+                    duration: 0.3
+                }, ">-0.3")
                 .to(this.roomChildren.desk_stuff_2.scale, {
                     x: 1,
                     y: 1,
@@ -326,7 +341,6 @@ export default class Preloader extends EventEmitter {
         let currentY = e.touches[0].clientY;
         let difference = this.initialY - currentY;
         if(difference > 0) {
-            console.log('swipped up');
             this.removeEventListener();
             this.playSecondIntro();
         }

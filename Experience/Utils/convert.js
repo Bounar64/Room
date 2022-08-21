@@ -4,7 +4,7 @@ export default function (element) {
     .split('')
     .map((char) => {
         if(char === ' ') {
-            return `<span>${char}</span>`
+            return `<span>&nbsp;</span>`
         }
         return `<span class="animated">${char}</span>`
     })

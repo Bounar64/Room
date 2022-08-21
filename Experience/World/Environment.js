@@ -8,31 +8,39 @@ export default class Environment {
         this.experience = new Experience();
         this.scene = this.experience.scene;
         this.resources = this.experience.resources;
+        this.room = this.resources.items.room;
+        this.led = this.room.scene.children[14];
 
-        // this.gui = new GUI({ container: document.querySelector('.hero-main') });
+        // this.gui = new GUI({ width: 500 });
         // this.obj = {
-        //     colorObj : {r: 0, g: 0, b: 0},
-        //     intensity: 3,
+        //     colorObjS : {r: 0, g: 0, b: 0},
+        //     colorObjA : {r: 0, g: 0, b: 0},
+        //     intensityS : 3,
+        //     intensityA : 3,
         // }
 
         this.setSunLight();
         this.environmentMap();
+
+        // this.setGUI();
     }
 
     /**
      * Debug
      */
     // setGUI() {
-    //     this.gui.addColor(this.obj, 'colorObj').onChange(() => {
-    //         this.sunLight.color.copy(this.obj.colorObj);
-    //         this.ambiantLight.color.copy(this.obj.colorObj);
+    //     this.gui.addColor(this.obj, 'colorObjS').onChange(() => {
+    //         this.sunLight.color.copy(this.obj.colorObjS);
     //     });
-    //     this.gui.add(this.obj, 'intensity', -10, 10).onChange(() => {
-    //         this.sunLight.intensity = this.obj.intensity;
-    //         this.ambiantLight.intensity = this.obj.intensity;
+    //     this.gui.addColor(this.obj, 'colorObjA').onChange(() => {
+    //         this.ambiantLight.color.copy(this.obj.colorObjA);
+    //     });
+    //     this.gui.add(this.obj, 'intensityS', -10, 10, 0.001).onChange(() => {
+    //         this.sunLight.intensity = this.obj.intensityS;
     //     })
-    // }
-
+    //     this.gui.add(this.obj, 'intensityA', -10, 10, 0.001).onChange(() => {
+    //         this.ambiantLight.intensity = this.obj.intensityA;
+    //     })
     
     /**
      * Light
@@ -90,9 +98,9 @@ export default class Environment {
                 intensity: 0.01,
             })
             gsap.to(this.ambiantLight, {
-                intensity: 0.005,
+                intensity: 0.001,
             })
-        }else {   
+        }else {               
             gsap.to(this.sunLight.color, {
                 r: 255 / 255,
                 g: 255 / 255, 

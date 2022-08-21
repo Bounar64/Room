@@ -10,10 +10,4 @@ export default [
         type: "videoTexture",
         path: "/textures/red_video.mp4"
     },
-
-    // {
-    //     name: "circle_map_brown",
-    //     type: "imageTexture",
-    //     path: "/textures/circleMap.png"
-    // }
 ]
